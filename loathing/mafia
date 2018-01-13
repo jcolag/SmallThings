@@ -1,0 +1,37 @@
+#!/bin/sh
+dest=~/.kolmafia/program
+baseUrl=http://ci.kolmafia.us/job/Kolmafia/lastSuccessfulBuild
+artifact=artifact/dist
+changes=changes
+jenkins=$(curl -s "$baseUrl/$artifact/")
+sep='s/>/>\n/g'
+nohtml='s/<[^>]*>//g'
+fixlines='s/\s\s*/ /g; s/@@@@@/\n/g'
+current=$(find $dest/* | tail -1 | rev | cut -f1 -d'/' | rev)
+latest=$(echo "$jenkins" | sed $sep | grep .jar | head -1 | cut -f2 -d'"')
+build=$(echo "$latest" | tr -cd '[:digit:]')
+if [ ! -d dest ]
+then
+  mkdir -p "$dest"
+fi
+if [ -z "$latest " ]
+then
+  latest=$current
+fi
+if [ -z "$(find $dest/*)" ] || [ "$current" != "$latest" ]
+then
+  rm -rf $dest/*
+  echo "Changes since last version, for b$build:"
+  changePage=$(curl -s "$baseUrl/$changes")
+  firstLine=$(echo "$changePage" | sed $sep | grep -n "<ol>" | cut -f1 -d':')
+  lastLine=$(echo "$changePage" | sed $sep | grep -n "</ol>" | cut -f1 -d':')
+  firstLine=$((firstLine + 1))
+  lastLine=$((lastLine - 1))
+  changesHtml=$(echo "$changePage" | sed $sep | head --lines=$lastLine | tail --lines=+$firstLine)
+  echo "$changesHtml" | sed "$nohtml" | tr -s '\n' ' ' | sed "$fixlines" | sed 's/^/ > /g'
+else
+  echo "No changes since last version, b$build!"
+fi
+curl -s -o "$dest/$latest" "$baseUrl/$artifact/$latest"
+java -jar "$dest/$latest"
+
