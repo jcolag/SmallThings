@@ -60,5 +60,5 @@ String normalize(String source) {
     x = x.replaceAll(r'  ', ' ');
   }
   x = x.toLowerCase();
-  return x;
+  return x.split(' ');
 }
