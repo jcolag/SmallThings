@@ -62,3 +62,10 @@ String normalize(String source) {
   x = x.toLowerCase();
   return x.split(' ');
 }
+
+String longestCommonSubstring(List<String> first, List<String> second) {
+  sequence = '';
+  if (first.length == 0 || second.length == 0) {
+    return sequence;
+  }
+}
