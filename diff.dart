@@ -68,4 +68,8 @@ String longestCommonSubstring(List<String> first, List<String> second) {
   if (first.length == 0 || second.length == 0) {
     return sequence;
   }
+  
+  List<List<Number>> num;
+  Number maxlen = 0;
+  Number lastSubsBegin = 0;
 }
