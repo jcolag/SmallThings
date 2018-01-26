@@ -63,13 +63,13 @@ String normalize(String source) {
   return x.split(' ');
 }
 
-String longestCommonSubstring(List<String> first, List<String> second) {
-  sequence = '';
+List<String> longestCommonSubstring(List<String> first, List<String> second) {
+  List<String> sequence = new List<String>();
   if (first.length == 0 || second.length == 0) {
     return sequence;
   }
   
-  List<List<Number>> num;
-  Number maxlen = 0;
-  Number lastSubsBegin = 0;
+  List<List<int>> num = new List<List<int>>(first.length);
+  int maxlen = 0;
+  int lastSubsBegin = 0;
 }
