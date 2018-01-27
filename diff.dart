@@ -2,11 +2,6 @@ import 'dart:io';
 import 'dart:async';
 import 'dart:convert';
 
-class TreeNode {
-  string data;
-  List<TreeNode> left;
-}
-
 void main(List<String> args) async {
   if (args.length != 2) {
     print('ERROR:  Need two files.');
