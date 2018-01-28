@@ -58,6 +58,9 @@ String normalize(String source) {
   return x.split(' ');
 }
 
+/* Adapted from:
+ * https://en.wikibooks.org/wiki/Algorithm_Implementation/Strings/Longest_common_substring
+ */
 List<String> longestCommonSubstring(List<String> first, List<String> second) {
   List<String> sequence = new List<String>();
   if (first.length == 0 || second.length == 0) {
@@ -67,4 +70,34 @@ List<String> longestCommonSubstring(List<String> first, List<String> second) {
   List<List<int>> num = new List<List<int>>(first.length);
   int maxlen = 0;
   int lastSubsBegin = 0;
+  for (int i = 0; i < first.length; i++) {
+    num[i] = new List<int>(second.length);
+    for (int j = 0; j < second.length; j++) {
+      if (first[i] != second[j]) {
+        num[i][j] = 0;
+      } else {
+        if (i == 0 || j == 0) {
+          num[i][j] = 1;
+        } else {
+          num[i][j] = 1 + num[i-1][j-1];
+        }
+        
+        if (num[i][j] > maxlen) {
+          maxlen = num[i][j];
+          int thisSubsBegin = i - num[i][j] + 1;
+          if (lastSubsBegin == thisSubsBegin) {
+            sequence.add(first[i]);
+          } else {
+            lastSubsBegin = thisSubsBegin;
+            sequence = new List<String>();
+            for (int k = 0; k < i + 1 - lastSubsBegin; k++) {
+              sequence.add(first[lastSubsBegin + k]);
+            }
+          }
+        }
+      }
+    }
+  }
+  
+  return sequence;
 }
