@@ -12,8 +12,7 @@ void main(List<String> args) async {
   var file2 = new File(args[1]).readAsStringSync();
   var words1 = normalize(file1);
   var words2 = normalize(file2);
-  print(words1.length);
-  print(words2.length);
+  print(longestCommonSubstring(words1, words2));
 }
 
 String normalize(String source) {
