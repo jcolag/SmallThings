@@ -2,6 +2,14 @@ import 'dart:io';
 import 'dart:async';
 import 'dart:convert';
 
+class DiffFragment {
+  int firstStart;
+  int firstEnd;
+  int secondStart;
+  int secondEnd;
+  List<String> words;
+}
+
 void main(List<String> args) async {
   if (args.length != 2) {
     print('ERROR:  Need two files.');
