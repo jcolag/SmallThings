@@ -20,7 +20,7 @@ void main(List<String> args) async {
   var file2 = new File(args[1]).readAsStringSync();
   var words1 = normalize(file1);
   var words2 = normalize(file2);
-  print(longestCommonSubstring(words1, words2));
+  var fragment = longestCommonSubstring(words1, words2);
 }
 
 String normalize(String source) {
@@ -68,7 +68,7 @@ String normalize(String source) {
 /* Adapted from:
  * https://en.wikibooks.org/wiki/Algorithm_Implementation/Strings/Longest_common_substring
  */
-List<String> longestCommonSubstring(List<String> first, List<String> second) {
+DiffFragment longestCommonSubstring(List<String> first, List<String> second) {
   List<String> sequence = new List<String>();
   if (first.length == 0 || second.length == 0) {
     return sequence;
@@ -122,5 +122,11 @@ List<String> longestCommonSubstring(List<String> first, List<String> second) {
     }
   }
   
-  return sequence;
+  var result = new DiffFragment();
+  result.words = sequence;
+  result.firstStart = aFirst;
+  result.firstEnd = zFirst;
+  result.secondStart = aSecond;
+  result.secondEnd = zSecond;
+  return result;
 }
