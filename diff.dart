@@ -21,6 +21,9 @@ void main(List<String> args) async {
   var words1 = normalize(file1);
   var words2 = normalize(file2);
   var fragment = longestCommonSubstring(words1, words2);
+  print(fragment.words);
+  print("From ${fragment.firstStart} to ${fragment.firstEnd} in ${args[0]}");
+  print("From ${fragment.secondStart} to ${fragment.secondEnd} in ${args[1]}");
 }
 
 String normalize(String source) {
