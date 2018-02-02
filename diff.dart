@@ -11,6 +11,8 @@ class DiffFragment {
 }
 
 void main(List<String> args) async {
+  var frags1 = new List<List<String>>();
+  var frags2 = new List<List<String>>();
   if (args.length != 2) {
     print('ERROR:  Need two files.');
     return;
@@ -18,12 +20,16 @@ void main(List<String> args) async {
   
   var file1 = new File(args[0]).readAsStringSync();
   var file2 = new File(args[1]).readAsStringSync();
-  var words1 = normalize(file1);
-  var words2 = normalize(file2);
-  var fragment = longestCommonSubstring(words1, words2);
-  print(fragment.words);
-  print("From ${fragment.firstStart} to ${fragment.firstEnd} in ${args[0]}");
-  print("From ${fragment.secondStart} to ${fragment.secondEnd} in ${args[1]}");
+  frags1.add(normalize(file1));
+  frags2.add(normalize(file2));
+  for (int i = 0; i < frags1.length; i++) {
+    for (int j = 0; j < frags2.length; j++) {
+      var fragment = longestCommonSubstring(frags1[i], frags2[j]);
+      print(fragment.words);
+      print("From ${fragment.firstStart} to ${fragment.firstEnd} in ${args[0]}");
+      print("From ${fragment.secondStart} to ${fragment.secondEnd} in ${args[1]}");
+    }
+  }
 }
 
 String normalize(String source) {
