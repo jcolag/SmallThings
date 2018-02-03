@@ -2,6 +2,16 @@ import 'dart:io';
 import 'dart:async';
 import 'dart:convert';
 
+class Fragment {
+  List<String> words = new List<String>();
+  int offset = 0;
+  
+  Fragment(List<String> w, int o) {
+    this.words = w;
+    this.offset = o;
+  }
+}
+
 class DiffFragment {
   int firstStart;
   int firstEnd;
