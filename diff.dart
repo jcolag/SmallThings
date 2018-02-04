@@ -18,6 +18,14 @@ class DiffFragment {
   int secondStart;
   int secondEnd;
   List<String> words;
+  
+  DiffFragment(List<String> w, int a1, int z1, int a2, int z2) {
+    this.words = w;
+    this.firstStart = a1;
+    this.firstEnd = z1;
+    this.secondStart = a2;
+    this.secondEnd = z2;
+  }
 }
 
 void main(List<String> args) async {
@@ -141,11 +149,5 @@ DiffFragment longestCommonSubstring(List<String> first, List<String> second) {
     }
   }
   
-  var result = new DiffFragment();
-  result.words = sequence;
-  result.firstStart = aFirst;
-  result.firstEnd = zFirst;
-  result.secondStart = aSecond;
-  result.secondEnd = zSecond;
-  return result;
+  return new DiffFragment(sequence, aFirst, zFirst, aSecond, zSecond);
 }
