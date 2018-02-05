@@ -10,6 +10,15 @@ class Fragment {
     this.words = w;
     this.offset = o;
   }
+  
+  DiffFragment toDiffFragment(bool second) {
+    var w = this.words;
+    var a1 = second ? -1 : this.offset;
+    var z1 = second ? -1 : (this.offset + w.length);
+    var a2 = second ? this.offset : -1;
+    var z2 = second ? (this.offset + w.length) : -1;
+    return new DiffFragment(w, a1, z1, a2, z2);
+  }
 }
 
 class DiffFragment {
