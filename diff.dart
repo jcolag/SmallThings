@@ -38,8 +38,8 @@ class DiffFragment {
 }
 
 void main(List<String> args) async {
-  var frags1 = new List<List<String>>();
-  var frags2 = new List<List<String>>();
+  var frags1 = new List<Fragment>();
+  var frags2 = new List<Fragment>();
   if (args.length != 2) {
     print('ERROR:  Need two files.');
     return;
@@ -47,14 +47,19 @@ void main(List<String> args) async {
   
   var file1 = new File(args[0]).readAsStringSync();
   var file2 = new File(args[1]).readAsStringSync();
-  frags1.add(normalize(file1));
-  frags2.add(normalize(file2));
-  for (int i = 0; i < frags1.length; i++) {
+  frags1.add(new Fragment(normalize(file1), 0));
+  frags2.add(new Fragment(normalize(file2), 0));
+  while (frags1.length > 0) {
+    var first = frags1.removeAt(0);
+    var maxlen = 0;
+    var bestmatch = -1;
+    DiffFragment fragment;
     for (int j = 0; j < frags2.length; j++) {
-      var fragment = longestCommonSubstring(frags1[i], frags2[j]);
-      print(fragment.words);
-      print("From ${fragment.firstStart} to ${fragment.firstEnd} in ${args[0]}");
-      print("From ${fragment.secondStart} to ${fragment.secondEnd} in ${args[1]}");
+      fragment = longestCommonSubstring(first.words, frags2[j].words);
+      if (fragment.firstEnd - fragment.firstStart > maxlen) {
+        maxlen = fragment.firstEnd - fragment.firstStart;
+        bestmatch = j;
+      }
     }
   }
 }
