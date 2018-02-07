@@ -35,6 +35,20 @@ class DiffFragment {
     this.secondStart = a2;
     this.secondEnd = z2;
   }
+  
+  String toString() {
+    String res = "";
+    if (this.firstStart > -1) {
+      res += "<< ${this.firstStart} to ${this.firstEnd}\n";
+    }
+    if (this.secondStart > -1) {
+      res += ">> ${this.secondStart} to ${this.secondEnd}\n";
+    }
+    res += "[ ";
+    res += words.join(', ');
+    res += " ]";
+    return res;
+  }
 }
 
 void main(List<String> args) async {
