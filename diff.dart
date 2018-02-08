@@ -78,6 +78,19 @@ void main(List<String> args) async {
   }
 }
 
+Fragment extractFragment(Fragment original, start, end) {
+  if (end > original.words.length || start >= end) {
+    return null;
+  }
+
+  var words = new List<String>();
+  for (var i = start; i < end; i++) {
+    words.add(original.words[i]);
+  }
+
+  return new Fragment(words, original.offset + end);
+}
+
 String normalize(String source) {
   var x = source;
   x = x.replaceAll('-', ' ');
