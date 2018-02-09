@@ -54,6 +54,7 @@ class DiffFragment {
 void main(List<String> args) async {
   var frags1 = new List<Fragment>();
   var frags2 = new List<Fragment>();
+  var diffs = new List<DiffFragment>();
   if (args.length != 2) {
     print('ERROR:  Need two files.');
     return;
@@ -75,6 +76,10 @@ void main(List<String> args) async {
         bestmatch = j;
       }
     }
+  
+  for (int a = 0; a < diffs.length; a++) {
+    print(diffs[a].toString());
+    print("---------------------------");
   }
 }
 
