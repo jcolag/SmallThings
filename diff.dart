@@ -77,6 +77,11 @@ void main(List<String> args) async {
       }
     }
   
+  while (frags2.length > 0) {
+    var f = frags2.removeAt(0);
+    diffs.add(f.toDiffFragment(true));
+  }
+  
   for (int a = 0; a < diffs.length; a++) {
     print(diffs[a].toString());
     print("---------------------------");
