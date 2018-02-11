@@ -76,6 +76,39 @@ void main(List<String> args) async {
         bestmatch = j;
       }
     }
+    
+    if (bestmatch > -1) {
+      var frag = frags2.removeAt(bestmatch);
+      var firstStart = fragment.firstStart;
+      var firstEnd = fragment.firstEnd;
+      var secondStart = fragment.secondStart;
+      var secondEnd = fragment.secondEnd;
+
+      var f = extractFragment(first, 0, firstStart - 1);
+      if (f != null) {
+        frags1.add(f);
+      }
+
+      f = extractFragment(first, firstEnd + 1, first.words.length);
+      if (f != null) {
+        frags1.add(f);
+      }
+
+      f = extractFragment(frag, 0, secondStart - 1);
+      if (f != null) {
+        frags2.add(f);
+      }
+
+      f = extractFragment(frag, secondEnd + 1, frag.words.length);
+      if (f != null) {
+        frags2.add(f);
+      }
+
+      diffs.add(fragment);
+    } else {
+      diffs.add(first.toDiffFragment(false));
+    }
+  }
   
   while (frags2.length > 0) {
     var f = frags2.removeAt(0);
