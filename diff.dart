@@ -19,6 +19,19 @@ class Fragment {
     var z2 = second ? (this.offset + w.length) : -1;
     return new DiffFragment(w, a1, z1, a2, z2);
   }
+
+  Fragment extractFragment(int start, int end) {
+    if (end > this.words.length || start >= end) {
+      return null;
+    }
+
+    var words = new List<String>();
+    for (var i = start; i < end; i++) {
+      words.add(this.words[i]);
+    }
+
+    return new Fragment(words, this.offset + end);
+  }
 }
 
 class DiffFragment {
