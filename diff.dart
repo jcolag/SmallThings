@@ -97,22 +97,22 @@ void main(List<String> args) async {
       var secondStart = fragment.secondStart;
       var secondEnd = fragment.secondEnd;
 
-      var f = extractFragment(first, 0, firstStart - 1);
+      var f = first.extractFragment(0, firstStart - 1);
       if (f != null) {
         frags1.add(f);
       }
 
-      f = extractFragment(first, firstEnd + 1, first.words.length);
+      f = first.extractFragment(firstEnd + 1, first.words.length);
       if (f != null) {
         frags1.add(f);
       }
 
-      f = extractFragment(frag, 0, secondStart - 1);
+      f = frag.extractFragment(0, secondStart - 1);
       if (f != null) {
         frags2.add(f);
       }
 
-      f = extractFragment(frag, secondEnd + 1, frag.words.length);
+      f = frag.extractFragment(secondEnd + 1, frag.words.length);
       if (f != null) {
         frags2.add(f);
       }
