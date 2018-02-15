@@ -145,7 +145,7 @@ void main(List<String> args) async {
     var bestmatch = -1;
     DiffFragment fragment;
     for (int j = 0; j < frags2.length; j++) {
-      fragment = longestCommonSubstring(first.words, frags2[j].words);
+      fragment = first.longestCommonSubstring(frags2[j]);
       if (fragment.firstEnd - fragment.firstStart > maxlen) {
         maxlen = fragment.firstEnd - fragment.firstStart;
         bestmatch = j;
