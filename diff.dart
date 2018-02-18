@@ -197,46 +197,19 @@ void main(List<String> args) async {
 }
 
 String normalize(String source) {
-  var x = source;
-  x = x.replaceAll('-', ' ');
-  x = x.replaceAll('?', ' ');
-  x = x.replaceAll('!', ' ');
-  x = x.replaceAll('.', ' ');
-  x = x.replaceAll(',', ' ');
-  x = x.replaceAll('+', ' ');
-  x = x.replaceAll('#', ' ');
-  x = x.replaceAll('&', ' ');
-  x = x.replaceAll('*', ' ');
-  x = x.replaceAll('¢', ' ');
-  x = x.replaceAll('©', ' ');
-  x = x.replaceAll('°', ' ');
-  x = x.replaceAll('}', ' ');
-  x = x.replaceAll('{', ' ');
-  x = x.replaceAll(')', ' ');
-  x = x.replaceAll('(', ' ');
-  x = x.replaceAll(']', ' ');
-  x = x.replaceAll('[', ' ');
-  x = x.replaceAll('_', ' ');
-  x = x.replaceAll('|', ' ');
-  x = x.replaceAll(';', ' ');
-  x = x.replaceAll(':', ' ');
-  x = x.replaceAll('/', ' ');
-  x = x.replaceAll('<', ' ');
-  x = x.replaceAll('=', ' ');
-  x = x.replaceAll('>', ' ');
-  x = x.replaceAll('"', ' ');
-  x = x.replaceAll('·', ' ');
-  x = x.replaceAll('\$', ' ');
-  x = x.replaceAll('\n', ' ');
-  x = x.replaceAll('\r', ' ');
-  x = x.replaceAll(' \'', ' ');
-  x = x.replaceAll('\' ', ' ');
-  for (int i = 0; i < 100; i++) {
-    x = x.replaceAll(r'  ', ' ');
+  var chars = [ '-', '?', '!', '.', ',', '+', '#', '&', '*', '¢', '©', '°',
+                '}', '{', ')', '(', ']', '[', '_', '|', ';', ':', '/', '<',
+                '=', '>', '"', '·', '”', '“', '—', '…', '™',
+                '\$', '\n', '\r', ' \'', '\' ', '\s' ];
+  source = source.replaceAll('’', '\'');
+  for (var c in chars) {
+    source = source.replaceAll(c, ' ');
   }
-  x = x.toLowerCase();
-  return x.split(' ');
-}
 
+  while (source.indexOf('  ') >= 0) {
+    source = source.replaceAll(r'  ', ' ');
   }
+
+  source = source.toLowerCase();
+  return source.trim().split(' ');
 }
