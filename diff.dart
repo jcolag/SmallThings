@@ -30,7 +30,7 @@ class Fragment {
       words.add(this.words[i]);
     }
 
-    return new Fragment(words, this.offset + end);
+    return new Fragment(words, this.offset + start);
   }
 
   /* Adapted from:
@@ -92,6 +92,10 @@ class Fragment {
       }
     }
   
+    aFirst += this.offset;
+    zFirst += this.offset;
+    aSecond += compareWith.offset;
+    zSecond += compareWith.offset;
     return new DiffFragment(sequence, aFirst, zFirst, aSecond, zSecond);
   }
 }
@@ -159,22 +163,22 @@ void main(List<String> args) async {
       var secondStart = fragment.secondStart;
       var secondEnd = fragment.secondEnd;
 
-      var f = first.extractFragment(0, firstStart - 1);
+      var f = first.extractFragment(0, firstStart - first.offset);
       if (f != null) {
         frags1.add(f);
       }
 
-      f = first.extractFragment(firstEnd + 1, first.words.length);
+      f = first.extractFragment(firstEnd - first.offset + 1, first.words.length);
       if (f != null) {
         frags1.add(f);
       }
 
-      f = frag.extractFragment(0, secondStart - 1);
+      f = frag.extractFragment(0, secondStart - frag.offset);
       if (f != null) {
         frags2.add(f);
       }
 
-      f = frag.extractFragment(secondEnd + 1, frag.words.length);
+      f = frag.extractFragment(secondEnd - frag.offset + 1, frag.words.length);
       if (f != null) {
         frags2.add(f);
       }
