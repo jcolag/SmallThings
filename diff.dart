@@ -194,6 +194,7 @@ void main(List<String> args) async {
     diffs.add(f.toDiffFragment(true));
   }
   
+  diffs.sort((a,b) => a.secondStart.compareTo(b.secondStart));
   for (int a = 0; a < diffs.length; a++) {
     print(diffs[a].toString());
     print("---------------------------");
