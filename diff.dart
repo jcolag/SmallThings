@@ -118,10 +118,10 @@ class DiffFragment {
   String toString() {
     String res = "";
     if (this.firstStart > -1) {
-      res += "<< ${this.firstStart} to ${this.firstEnd}\n";
+      res += "<<<<<<<< Lines #${this.firstStart} to ${this.firstEnd}\n";
     }
     if (this.secondStart > -1) {
-      res += ">> ${this.secondStart} to ${this.secondEnd}\n";
+      res += ">>>>>>>> Lines #${this.secondStart} to ${this.secondEnd}\n";
     }
     res += "[ ";
     res += words.join(', ');
