@@ -11,6 +11,10 @@ class Fragment {
     this.offset = o;
   }
   
+  String toString() {
+    return " ${this.words.length} starting at ${this.offset}";
+  }
+  
   DiffFragment toDiffFragment(bool second) {
     var w = this.words;
     var a1 = second ? -1 : this.offset;
