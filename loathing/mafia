@@ -1,6 +1,6 @@
 #!/bin/sh
 dest=~/.kolmafia/program
-baseUrl=http://ci.kolmafia.us/job/Kolmafia/lastSuccessfulBuild
+baseUrl=https://ci.kolmafia.us/job/Kolmafia/lastSuccessfulBuild
 artifact=artifact/dist
 changes=changes
 jenkins=$(curl -s "$baseUrl/$artifact/")
