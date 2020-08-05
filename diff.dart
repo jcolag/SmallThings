@@ -44,6 +44,7 @@ class Fragment {
     var first = this.words;
     var second = compareWith.words;
     List<String> sequence = new List<String>();
+print("Comparing ${first.length} with ${second.length}");
     if (first.length == 0 || second.length == 0) {
       return sequence;
     }
@@ -57,8 +58,10 @@ class Fragment {
     int zSecond = -1;
   
     for (int i = 0; i < first.length; i++) {
+print("i:   ${i}");
       num[i] = new List<int>(second.length);
       for (int j = 0; j < second.length; j++) {
+print(" j:  ${i} - ${j}");
         if (first[i] != second[j]) {
           num[i][j] = 0;
         } else {
@@ -190,6 +193,13 @@ void main(List<String> args) async {
       diffs.add(fragment);
     } else {
       diffs.add(first.toDiffFragment(false));
+    }
+    
+    for (int k=0;k<frags1.length;k++) {
+      print("<<-- ${frags1[k].toString()}");
+    }
+    for (int k=0;k<frags2.length;k++) {
+      print("-->> ${frags2[k].toString()}");
     }
   }
   
