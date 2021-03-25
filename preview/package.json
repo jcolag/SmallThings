@@ -1,0 +1,11 @@
+{
+  "name": "preview",
+  "version": "1.0.0",
+  "main": "index.js",
+  "author": "John Colagioia",
+  "license": "GPLv3",
+  "dependencies": {
+    "he": "^1.2.0",
+    "preview-link": "^2.0.1"
+  }
+}
