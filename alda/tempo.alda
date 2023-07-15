@@ -1,0 +1,5 @@
+trumpet:
+  (tempo 200) o4 c8 d e f g a b > c4.
+
+piano:
+  o3 e8 f g a b > c d e4.
