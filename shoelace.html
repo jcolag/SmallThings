@@ -1,0 +1,42 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link
+    rel="stylesheet"
+    media="(prefers-color-scheme:light)"
+    href="https://cdn.jsdelivr.net/npm/@shoelace-style/shoelace@2.16.0/cdn/themes/light.css"
+  />
+  <link
+    rel="stylesheet"
+    media="(prefers-color-scheme:dark)"
+    href="https://cdn.jsdelivr.net/npm/@shoelace-style/shoelace@2.16.0/cdn/themes/dark.css"
+    onload="document.documentElement.classList.add('sl-theme-dark');"
+  />
+  <script type="module" src="https://cdn.jsdelivr.net/npm/@shoelace-style/shoelace@2.16.0/cdn/shoelace-autoloader.js"></script>
+  <title>Shoelace Tests</title>
+</head>
+<body>
+  <main>
+    <sl-button size="small">Click me</sl-button>
+    <sl-button disabled>Click me</sl-button>
+    <sl-color-picker></sl-color-picker>
+    <sl-checkbox>Check me</sl-checkbox>
+    <sl-input></sl-input>
+
+    <script>
+      const input = document.querySelector('sl-input');
+      const checkbox = document.querySelector('sl-checkbox');
+      const colorPicker = document.querySelector('sl-color-picker');
+
+      input.focus();
+      checkbox.addEventListener('sl-change', event => {
+        console.log(event.target.checked ? 'checked' : 'not checked');
+      });
+      colorPicker.swatches = ['red', 'orange', 'yellow', 'green', 'blue', 'purple'];
+    </script>
+  </main>
+</body>
+</html>
+
